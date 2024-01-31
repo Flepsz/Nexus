@@ -6,16 +6,20 @@ import TestScreen from "../screens/TestScreen";
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
-  const navigation = useNavigation();
+	const navigation = useNavigation();
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerShown: false,
 		});
 	}, []);
-  
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Test" component={TestScreen} />
-    </Tab.Navigator>
-  )
+
+	return (
+		<Tab.Navigator>
+			<Tab.Screen
+				name="Test"
+				component={TestScreen}
+				options={{ headerShown: false }}
+			/>
+		</Tab.Navigator>
+	);
 }

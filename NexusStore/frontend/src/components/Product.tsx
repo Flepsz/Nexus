@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, Text, TouchableOpacity } from "react-native";
 import { TouchableRipple, Paragraph } from "react-native-paper";
 import { Result } from "../queries/types";
 
@@ -10,14 +10,16 @@ type Props = {
 
 export function Product({ item, onPress }: Props) {
 	return (
-		<TouchableRipple onPress={() => onPress(item)} accessibilityRole="button">
-			<View className="w-44 bg-white">
-				<Image source={{uri: item.thumbnail}} />
+		<TouchableOpacity onPress={() => onPress(item)} className="bg-white w-[50%]">
+			<View>
+				<View className="">
+					<Image style={{ width: 200, height: 150, resizeMode: 'contain'}} source={{uri: item.thumbnail}} />
+				</View>
 				<View>
-					<Paragraph className="text-base">{item.title}</Paragraph>
-					<Paragraph className="text-base font-bold">{item.price}</Paragraph>
+					<Text className="text-base">{item.title}</Text>
+					<Text className="text-base font-bold">{item.price}</Text>
 				</View>
 			</View>
-		</TouchableRipple>
+		</TouchableOpacity>
 	);
 }

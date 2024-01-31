@@ -18,6 +18,8 @@ interface Props {
 }
 
 export default function ProductDetailsScreen({ route }: Props) {
+	const product = route.params.product;
+
 	const { isPending, error, data, refetch } = useFetchProductsDesc(
 		route.params.product.id
 	);
@@ -44,8 +46,6 @@ export default function ProductDetailsScreen({ route }: Props) {
 					onRefresh={refetchByUser}
 				/>
 			}
-		>
-
-    </ScrollView>
+		></ScrollView>
 	);
 }

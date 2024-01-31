@@ -7,7 +7,7 @@ import { Result } from "../queries/types";
 export type NexusStackNavigator = {
 	Main: undefined;
 	ProductDetails: { product: Result };
-}
+};
 
 const RootStack = createNativeStackNavigator<NexusStackNavigator>();
 
@@ -18,7 +18,11 @@ export default function RootNavigator() {
 				<RootStack.Screen name="Main" component={TabNavigator} />
 			</RootStack.Group>
 			<RootStack.Group>
-				<RootStack.Screen name="ProductDetails" component={DetailsScreen} />
+				<RootStack.Screen
+					name="ProductDetails"
+					component={DetailsScreen}
+					options={{ headerShown: false }}
+				/>
 			</RootStack.Group>
 		</RootStack.Navigator>
 	);
