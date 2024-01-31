@@ -5,6 +5,7 @@ import { useAppState } from "./src/hooks/useAppState";
 import { useOnlineManager } from "./src/hooks/useOnlineManager";
 import { NavigationContainer } from "@react-navigation/native";
 import RootNavigator from "./src/navigation/rootNavigator";
+import Toast from "react-native-toast-message";
 
 function onAppStateChange(status: AppStateStatus) {
 	if (Platform.OS !== "web") {
@@ -21,7 +22,7 @@ export default function App() {
 			<NavigationContainer>
 				<RootNavigator />
 			</NavigationContainer>
+			<Toast />
 		</QueryClientProvider>
 	);
 }
-
