@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Image, Text, TouchableOpacity } from "react-native";
-import { TouchableRipple, Paragraph } from "react-native-paper";
+import { View, Image, Text } from "react-native";
+import { TouchableRipple } from "react-native-paper";
 import { Result } from "../queries/types";
+import formatCurrency from "./utils/formatCurrency";
 
 type Props = {
 	item: Result;
@@ -10,16 +10,22 @@ type Props = {
 
 export function Product({ item, onPress }: Props) {
 	return (
-		<TouchableOpacity onPress={() => onPress(item)} className="bg-white w-[50%]">
+		<TouchableRipple onPress={() => onPress(item)} className="bg-white w-[48%] rounded-xl">
 			<View>
-				<View className="">
-					<Image style={{ width: 200, height: 150, resizeMode: 'contain'}} source={{uri: item.thumbnail}} />
+				<View className="mx-3 mt-3">
+					<Text className="font-bold text-base text-purple-900">30% OFF</Text>
 				</View>
-				<View>
-					<Text className="text-base">{item.title}</Text>
-					<Text className="text-base font-bold">{item.price}</Text>
+				<View className="overflow-hidden">
+					<Image
+						style={{width: 170, height: 100, resizeMode: "contain", margin: "auto"}}
+						source={{ uri: item.thumbnail }}
+					/>
+				</View>
+				<View className="m-3">
+					<Text className="text-sm font-semibold">{item.title.length > 18 ? `${item.title.slice(0, 18)}...` : item.title}</Text>
+					<Text className="text-base font-bold">{formatCurrency(item.price, "BRL")}</Text>
 				</View>
 			</View>
-		</TouchableOpacity>
+		</TouchableRipple>
 	);
 }

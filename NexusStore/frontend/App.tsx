@@ -1,11 +1,16 @@
-import { StyleSheet, Text, View, AppStateStatus, Platform } from "react-native";
+import { AppStateStatus, Platform } from "react-native";
 import { QueryClientProvider, focusManager } from "@tanstack/react-query";
 import queryClient from "./src/services/queryClient";
 import { useAppState } from "./src/hooks/useAppState";
 import { useOnlineManager } from "./src/hooks/useOnlineManager";
-import { NavigationContainer, DefaultTheme  } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import RootNavigator from "./src/navigation/rootNavigator";
 import Toast from "react-native-toast-message";
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+	default: "native",
+});
 
 function onAppStateChange(status: AppStateStatus) {
 	if (Platform.OS !== "web") {

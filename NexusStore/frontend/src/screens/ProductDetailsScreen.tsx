@@ -39,13 +39,15 @@ export default function ProductDetailsScreen({ route }: Props) {
 	if (!data) return null;
 
 	return (
-		<ScrollView
+		<ScrollView className="h-screen w-screen"
 			refreshControl={
 				<RefreshControl
 					refreshing={isRefetchingByUser}
 					onRefresh={refetchByUser}
 				/>
 			}
-		></ScrollView>
+		>
+			
+		</ScrollView>
 	);
 }

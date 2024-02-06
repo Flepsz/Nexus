@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect } from "react";
-import TestScreen from "../screens/TestScreen";
+import TestScreen from "../screens/HomeScreen";
 
 const Tab = createBottomTabNavigator();
 
