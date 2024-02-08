@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import AntIcon from "react-native-vector-icons/AntDesign";
+import { AntDesign } from '@expo/vector-icons'
 
 export default function TopHeader() {
 	return (
 		<View>
-			<AntIcon name="left" size={20} />
+			<AntDesign name="left" size={20} />
 		</View>
 	);
 }

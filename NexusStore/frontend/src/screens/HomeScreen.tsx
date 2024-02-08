@@ -13,7 +13,7 @@ interface Props {
 	navigation: HomeScreenNavigationProp;
 }
 
-export default function TestScreen({ navigation }: Props) {
+export default function HomeScreen({ navigation }: Props) {
 	return (
 		<SafeAreaView>
 			<TopHeader />
