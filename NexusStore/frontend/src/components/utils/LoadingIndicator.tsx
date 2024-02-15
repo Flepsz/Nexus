@@ -6,7 +6,7 @@ interface Props {
 
 export function LoadingIndicator({ size }: Props) {
 	return (
-		<View>
+		<View className="m-auto">
 			<ActivityIndicator size={size} />
 		</View>
 	);

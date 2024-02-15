@@ -2,17 +2,20 @@ import { View, Text, RefreshControl, ScrollView } from "react-native";
 import React, { useCallback } from "react";
 import { Product } from "./Product";
 import Toast from "react-native-toast-message";
-import { useRefreshByUser } from "../hooks/useRefreshByUser";
-import { useRefreshOnFocus } from "../hooks/useRefreshOnFocus";
-import useFetchProducts from "../queries/productsList";
-import { LoadingIndicator } from "./utils/LoadingIndicator";
-import { Result } from "../queries/types";
+import { useRefreshByUser } from "../../hooks/useRefreshByUser";
+import { useRefreshOnFocus } from "../../hooks/useRefreshOnFocus";
+import useFetchProducts from "../../queries/productsList";
+import { LoadingIndicator } from "../utils/LoadingIndicator";
+import { Result } from "../../queries/types";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { NexusStackNavigator } from "../navigation/rootNavigator";
+import { NexusStackNavigator } from "../../navigation/rootNavigator";
 
 interface Props {
-  search: string;
-	navigation: StackNavigationProp<NexusStackNavigator, keyof NexusStackNavigator>;
+	search: string;
+	navigation: StackNavigationProp<
+		NexusStackNavigator,
+		keyof NexusStackNavigator
+	>;
 }
 
 export default function ProductsList({ search, navigation }: Props) {
@@ -43,7 +46,10 @@ export default function ProductsList({ search, navigation }: Props) {
 		<ScrollView
 			className="m-3 h-screen mb-10"
 			refreshControl={
-				<RefreshControl refreshing={isRefetchingByUser} onRefresh={refetchByUser} />
+				<RefreshControl
+					refreshing={isRefetchingByUser}
+					onRefresh={refetchByUser}
+				/>
 			}
 			showsHorizontalScrollIndicator={false}
 		>
