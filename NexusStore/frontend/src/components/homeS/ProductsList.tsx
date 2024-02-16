@@ -42,6 +42,7 @@ export default function ProductsList({ search, navigation }: Props) {
 		});
 		console.log(error);
 	}
+
 	return (
 		<ScrollView
 			className="m-3 h-screen mb-10"

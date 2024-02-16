@@ -2,13 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { useLayoutEffect } from "react";
 import HomeScreen from "../screens/HomeScreen";
-import { Ionicons } from "@expo/vector-icons";
 import TabBarComponent from "../components/TabBarComponent";
+import CartScreen from "../screens/CartScreen";
 
 export type TabStackParamList = {
 	Home: undefined;
 	Cart: undefined;
-	Liked: undefined;
 	Account: undefined;
 };
 
@@ -49,7 +48,7 @@ export default function TabNavigator() {
 			/>
 			<Tab.Screen
 				name="Cart"
-				component={HomeScreen}
+				component={CartScreen}
 				options={{
 					headerShown: false,
 					tabBarIcon: ({ color, size, focused }) => {
@@ -57,16 +56,7 @@ export default function TabNavigator() {
 					},
 				}}
 			/>
-			<Tab.Screen
-				name="Liked"
-				component={HomeScreen}
-				options={{
-					headerShown: false,
-					tabBarIcon: ({ color, size, focused }) => {
-						return <TabBarComponent nameIcon="heart" text="Liked" focused={focused} size={size} color={color} />
-					},
-				}}
-			/>
+
 			<Tab.Screen
 				name="Account"
 				component={HomeScreen}

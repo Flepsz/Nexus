@@ -18,13 +18,13 @@ export default function TabBarComponent({
 }: Props) {
 	const nameIconC = nameIcon + "-outline";
 	return (
-		<View className={`flex flex-row items-center ${focused && "bg-secondary p-2 w-full rounded-xl"}`}>
+		<View className={`flex flex-row items-center justify-center ${focused && "bg-secondary p-2 w-full rounded-xl"}`}>
 			<Ionicons
 				name={focused ? nameIcon : nameIconC}
 				size={size}
 				color={focused ? "#FFF" : color}
 			/>
-			{focused && <Text className={`text-white px-2`}>{text}</Text>}
+			{focused && <Text className={`text-white px-2 text-base font-semibold`}>{text}</Text>}
 		</View>
 	);
 }

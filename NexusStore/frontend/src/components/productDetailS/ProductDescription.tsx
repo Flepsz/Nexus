@@ -1,4 +1,5 @@
 import { View, Text } from "react-native";
+import { LoadingIndicator } from "../utils/LoadingIndicator";
 
 export default function ProductDescription({
 	description,
@@ -7,10 +8,10 @@ export default function ProductDescription({
 }) {
 	return (
 		<View>
-			<Text className="font-semibold text-lg">Descrição</Text>
-			<View className="ml-2">
-				<Text className="text-base text-justify font-normal">
-					{description}
+			<Text className="text-lg font-semibold">Descrição</Text>
+			<View className="ml-2 mb-52">
+				<Text className="text-base font-normal text-justify">
+					{description ? description : <LoadingIndicator size="large" />}
 				</Text>
 			</View>
 		</View>

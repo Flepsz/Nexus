@@ -1,22 +1,27 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import useCartStore from "../../store/useCartStore";
 import { useCallback } from "react";
+import Toast from "react-native-toast-message";
 
-export default function AddCart() {
+export default function AddCart({ itemOrder }: { itemOrder: ItemOrder }) {
 	const addToCart = useCartStore((state) => state.addToCart);
-	const removeFromCart = useCartStore((state) => state.removeFromCart);
 
-	const handleAddToFavorites = useCallback((item: ItemOrder) => {
-		addToCart(item);
-	}, []);
-
-	const handleRemoveFromFavorites = useCallback((item: ItemOrder) => {
-		removeFromCart(item);
-	}, []);
+	const handleAddToCart = useCallback(() => {
+		addToCart(itemOrder);
+		Toast.show({
+			type: "success",
+			text1: "Item Adicionado ao Carrinho!",
+		});
+	}, [addToCart, itemOrder]);
 
 	return (
-		<View className="w-full h-full">
-			<Text>AddCart</Text>
-		</View>
+		<TouchableOpacity
+			className="bg-secondary py-3 flex justify-center items-center rounded-xl"
+			onPress={handleAddToCart}
+		>
+			<Text className="text-white font-semibold text-lg">
+				Adicionar ao Carrinho
+			</Text>
+		</TouchableOpacity>
 	);
 }

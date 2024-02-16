@@ -1,4 +1,3 @@
-import { StackNavigationProp } from "@react-navigation/stack";
 import { RefreshControl, ScrollView, Text, View } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { NexusStackNavigator } from "../navigation/rootNavigator";
@@ -8,24 +7,16 @@ import { useRefreshByUser } from "../hooks/useRefreshByUser";
 import Toast from "react-native-toast-message";
 import TopHeader from "../components/common/TopHeader";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CartSquare from "../components/common/CartSquare";
-import { Entypo } from "@expo/vector-icons";
 import useFetchProductCategory from "../queries/productCategory";
 import { ProductDetail } from "../components/productDetailS/ProductDetail";
 import ProductDescription from "../components/productDetailS/ProductDescription";
 import ProductDetailFooter from "../components/productDetailS/ProductDetailFooter";
 
-type ProductDetailsScreenNavigationProp = StackNavigationProp<
-	NexusStackNavigator,
-	"ProductDetails"
->;
-
 interface Props {
-	navigation: ProductDetailsScreenNavigationProp;
 	route: RouteProp<NexusStackNavigator, "ProductDetails">;
 }
 
-export default function ProductDetailsScreen({ route, navigation }: Props) {
+export default function ProductDetailsScreen({ route }: Props) {
 	const product = route.params.product;
 
 	const {
@@ -66,11 +57,11 @@ export default function ProductDetailsScreen({ route, navigation }: Props) {
 					/>
 				}
 			>
-				<TopHeader title="PRODUTO" navigation={navigation} />
+				<TopHeader title="PRODUTO" />
 				<ProductDetail item={product} category={Category} />
 				<ProductDescription description={Description} />
 			</ScrollView>
-			<ProductDetailFooter price={product.price} />
+			<ProductDetailFooter product={product} />
 		</SafeAreaView>
 	);
 }
