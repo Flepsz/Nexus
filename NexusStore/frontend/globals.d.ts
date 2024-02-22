@@ -6,5 +6,5 @@ interface ItemOrder {
 	thumbnail: string;
 	price: number;
 	quantity: number;
-	totalPrice?: number;
+	totalPrice: number;
 }

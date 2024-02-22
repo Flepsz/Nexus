@@ -17,11 +17,11 @@ export default function CartScreen() {
 	const order = useCartStore((state) => state.order);
 	return (
 		<SafeAreaView>
-			<ScrollView className="w-screen h-screen px-5 flex flex-col">
-				<TopHeader title="CARRINHO" cart />
+			<ScrollView className="flex flex-col w-screen h-screen px-5">
+				<TopHeader title="CARRINHO" />
 				<ProductsCartList order={order} />
 			</ScrollView>
-			<FooterCheckout order={order} />
+			{order.length > 0 && <FooterCheckout order={order} />}
 		</SafeAreaView>
 	);
 }

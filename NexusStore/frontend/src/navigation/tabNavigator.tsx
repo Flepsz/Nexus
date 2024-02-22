@@ -4,6 +4,7 @@ import { useLayoutEffect } from "react";
 import HomeScreen from "../screens/HomeScreen";
 import TabBarComponent from "../components/TabBarComponent";
 import CartScreen from "../screens/CartScreen";
+import AccountScreen from "../screens/AccountScreen";
 
 export type TabStackParamList = {
 	Home: undefined;
@@ -59,7 +60,7 @@ export default function TabNavigator() {
 
 			<Tab.Screen
 				name="Account"
-				component={HomeScreen}
+				component={AccountScreen}
 				options={{
 					headerShown: false,
 					tabBarIcon: ({ color, size, focused }) => {

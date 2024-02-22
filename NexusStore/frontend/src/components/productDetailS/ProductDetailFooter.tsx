@@ -22,17 +22,15 @@ export default function ProductDetailFooter({ product }: Props) {
 		}
 	};
 
-	const createItemOrder = () => {
 		const ItemOrder: ItemOrder = {
 			id: product.id,
 			title: product.title,
 			thumbnail: product.thumbnail,
 			price: product.price,
 			quantity: quantity,
+			totalPrice: product.price * quantity
 		};
 
-		return ItemOrder;
-	};
 
 	return (
 		<View className="absolute bottom-0 w-full h-32 bg-white rounded-t-2xl px-5 py-4">
@@ -44,10 +42,10 @@ export default function ProductDetailFooter({ product }: Props) {
 						onDecrease={decreaseQuantity}
 					/>
 					<Text className="font-bold text-lg">
-						Total: {formatCurrency(product.price, "BRL")}
+						Total: {formatCurrency(ItemOrder.totalPrice, "BRL")}
 					</Text>
 				</View>
-				<AddCart itemOrder={createItemOrder()} />
+				<AddCart itemOrder={ItemOrder} />
 			</View>
 		</View>
 	);

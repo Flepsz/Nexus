@@ -7,6 +7,7 @@ interface CartStoreProps {
 	addToCart: (item: ItemOrder) => void;
 	removeFromCart: (item: ItemOrder) => void;
 	decreaseQuantity: (itemId: string) => void;
+	increaseQuantity: (itemId: string) => void;
 }
 
 const useCartStore = create(
@@ -20,14 +21,13 @@ const useCartStore = create(
 					);
 					if (existingItemIndex !== -1) {
 						const updatedOrder = [...state.order];
-						updatedOrder[existingItemIndex].quantity += 1;
+						updatedOrder[existingItemIndex].quantity += item.quantity;
 						updatedOrder[existingItemIndex].totalPrice =
 							updatedOrder[existingItemIndex].price *
 							updatedOrder[existingItemIndex].quantity;
 						return { order: updatedOrder };
 					} else {
-						const newItem = { ...item, quantity: 1, totalPrice: item.price };
-						return { order: [...state.order, newItem] };
+						return { order: [...state.order, item] };
 					}
 				});
 			},
@@ -52,6 +52,18 @@ const useCartStore = create(
 							return item;
 						})
 						.filter((item): item is ItemOrder => item !== null);
+					return { order: updatedOrder };
+				});
+			},
+			increaseQuantity: (itemId: string) => {
+				set((state) => {
+					const updatedOrder = state.order.map((item) => {
+						if (item.id === itemId) {
+							item.quantity += 1;
+							item.totalPrice = item.price * item.quantity;
+						}
+						return item;
+					});
 					return { order: updatedOrder };
 				});
 			},

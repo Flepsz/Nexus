@@ -23,7 +23,7 @@ export default function TopHeader({ title, cart }: Props) {
 			</TouchableOpacity>
 
 			<Text className="font-medium">{title}</Text>
-			{!cart ? <CartSquare /> : <View className="w-8"></View>}
+			{cart ? <CartSquare /> : <View className="w-8"></View>}
 		</View>
 	);
 }
