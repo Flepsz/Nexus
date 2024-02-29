@@ -19,7 +19,9 @@ interface Props {
 }
 
 export default function ProductsList({ search, navigation }: Props) {
-	const { data, isPending, error, refetch } = useFetchProducts(search);
+	const { data, isPending, error, refetch } = useFetchProducts(
+		search === "" ? "Tenis Nike" : search
+	);
 
 	const { isRefetchingByUser, refetchByUser } = useRefreshByUser(refetch);
 	useRefreshOnFocus(refetch);
@@ -45,7 +47,7 @@ export default function ProductsList({ search, navigation }: Props) {
 
 	return (
 		<ScrollView
-			className="m-3 h-screen mb-10"
+			className="m-6 h-screen mb-10"
 			refreshControl={
 				<RefreshControl
 					refreshing={isRefetchingByUser}
@@ -57,7 +59,7 @@ export default function ProductsList({ search, navigation }: Props) {
 			<View style={{ gap: 10 }}>
 				<Text className="text-xl font-bold">Produtos</Text>
 				<View
-					className="flex flex-wrap flex-row justify-center items-center h-full"
+					className="flex flex-wrap flex-row justify-center items-center h-full mb-36"
 					style={{ gap: 10 }}
 				>
 					{data &&

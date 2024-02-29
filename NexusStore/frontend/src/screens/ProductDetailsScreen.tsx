@@ -57,7 +57,7 @@ export default function ProductDetailsScreen({ route }: Props) {
 					/>
 				}
 			>
-				<TopHeader title="PRODUTO" />
+				<TopHeader title="PRODUTO" cart/>
 				<ProductDetail item={product} category={Category} />
 				<ProductDescription description={Description} />
 			</ScrollView>

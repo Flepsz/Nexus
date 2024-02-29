@@ -10,7 +10,7 @@ type Props = {
 export default function OrderItemCard({ item }: Props) {
   const formattedQuantity = item.quantity < 10 ? `0${item.quantity}` : `${item.quantity}`;
 	return (
-		<View className="flex flex-row items-center px-3">
+		<View className="flex flex-row items-center">
 			<View className="overflow-hidden">
 				<Image
 					style={{
@@ -23,8 +23,8 @@ export default function OrderItemCard({ item }: Props) {
 			</View>
 			<View className="flex flex-col gap-1">
 				<Text className="text-sm font-semibold">
-					{item.title.length > 18
-						? `${item.title.slice(0, 18)}...`
+					{item.title.length > 30
+						? `${item.title.slice(0, 30)}...`
 						: item.title}
 				</Text>
         <Text>x{formattedQuantity}</Text>

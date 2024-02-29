@@ -9,9 +9,6 @@ import ProductsCartList from "../components/cartS/ProductsCartList";
 
 type CartScreenNavigationProp = NavigationProp<TabStackParamList, "Cart">;
 
-interface Props {
-	navigation: CartScreenNavigationProp;
-}
 
 export default function CartScreen() {
 	const order = useCartStore((state) => state.order);
