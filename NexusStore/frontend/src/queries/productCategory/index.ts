@@ -1,12 +1,10 @@
 import { QueryFunctionContext, useQuery } from "@tanstack/react-query";
-import api from "../../services/api";
-import { Category, ProductDescription } from "../types";
+import { Category } from "../types";
+import { apiML } from "../../services/api";
 
 async function getProductCategory(ctx: QueryFunctionContext) {
 	const [, categId] = ctx.queryKey;
-	const { data } = await api.get<Category>(
-		`categories/${categId}`
-	);
+	const { data } = await apiML.get<Category>(`categories/${categId}`);
 
 	return data.name;
 }

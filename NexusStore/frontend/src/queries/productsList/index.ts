@@ -1,10 +1,10 @@
 import { QueryFunctionContext, useQuery } from "@tanstack/react-query";
 import { ProductsSearch } from "../types";
-import api from "../../services/api";
+import { apiML } from "../../services/api";
 
 async function getProducts(ctx: QueryFunctionContext) {
 	const [, search] = ctx.queryKey;
-	const { data } = await api.get<ProductsSearch>(
+	const { data } = await apiML.get<ProductsSearch>(
 		`sites/MLB/search?q=${search}`
 	);
 

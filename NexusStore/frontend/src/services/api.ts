@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const api = axios.create({
+export const apiML = axios.create({
 	baseURL: "https://api.mercadolibre.com/",
 });
 
-export default api;
+export const apiME = axios.create({
+	baseURL: "https://www.melhorenvio.com.br/api/v2/me/",
+	headers: {
+		Authorization: `Bearer ${process.env.TOKEN_ME}`
+	}
+})

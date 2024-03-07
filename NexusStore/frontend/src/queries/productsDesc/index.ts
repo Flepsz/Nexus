@@ -1,10 +1,10 @@
 import { QueryFunctionContext, useQuery } from "@tanstack/react-query";
-import api from "../../services/api";
 import { ProductDescription } from "../types";
+import { apiML } from "../../services/api";
 
 async function getProductsDescription(ctx: QueryFunctionContext) {
 	const [, itemId] = ctx.queryKey;
-	const { data } = await api.get<ProductDescription>(
+	const { data } = await apiML.get<ProductDescription>(
 		`items/${itemId}/description`
 	);
 

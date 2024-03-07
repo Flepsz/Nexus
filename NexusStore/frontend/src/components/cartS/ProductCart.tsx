@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import formatCurrency from "../utils/formatCurrency";
 import CounterQuantityCart from "./CounterQuantityCart";
 import useCartStore from "../../store/useCartStore";
@@ -15,8 +15,8 @@ export default function ProductCart({ item }: Props) {
 	};
 
 	const handleDecreaseQuantity = () => {
-		if (item.quantity < 1) {
-			handleRemoveFromCart();
+		if (item.quantity === 1) {
+			showAlert();
 		} else {
 			decreaseQuantity(item.id);
 		}
@@ -25,6 +25,26 @@ export default function ProductCart({ item }: Props) {
 	const handleIncreaseQuantity = () => {
 		increaseQuantity(item.id);
 	};
+
+	const showAlert = () =>
+		Alert.alert(
+			"Remover Produto do Carrinho",
+			"Você deseja realmente remover este produto do seu carrinho?",
+			[
+				{
+					text: "Cancelar",
+					style: "cancel",
+				},
+				{
+					text: "Sim",
+					onPress: () => handleRemoveFromCart(),
+					style: "default",
+				},
+			],
+			{
+				cancelable: true,
+			}
+		);
 
 	return (
 		<View className="bg-white rounded-xl">
