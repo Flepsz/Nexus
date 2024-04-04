@@ -1,6 +1,7 @@
 import { View, Text, Button, TouchableOpacity } from "react-native";
 import formatCurrency from "../utils/formatCurrency";
-import useMutateShipping, { getShipping } from "../../queries/calcShipping";
+import useMutateShipping from "../../queries/calcShipping";
+import Toast from "react-native-toast-message";
 
 interface Props {
 	order: ItemOrder[];
@@ -11,29 +12,32 @@ export default function FooterCheckout({ order }: Props) {
 		return accumulator + currentOrder.totalPrice;
 	}, 0);
 
-	const mutateShipping = useMutateShipping();
+	const { mutate } = useMutateShipping();
 
 	const handleShippingMutation = async () => {
-		try {
-			const result = await mutateShipping.mutateAsync({
-				from: "13036210",
-				to: "13272514",
-			});
-			console.log("Shipping result:", result);
-		} catch (error) {
-			console.log(mutateShipping.error);
-			
-			console.error("Error mutating shipping:", error);
-		}
+		const shippingObj = { from: "13036210", to: "13272514" };
+		mutate(shippingObj, {
+			onSuccess: (data) => {
+				console.log("Shipping result:", data);
+			},
+			onError: (error: any) => {
+				console.log(error);
+				
+				Toast.show({
+					type: "error",
+					text1: error.message,
+				});
+			},
+		});
 	};
 
-	const test = async () => {
+	const test = () => {
 		try {
-			const result = await getShipping(
-				"13036210",
-				"13272514",
-			);
-			console.log("Shipping result:", result);
+			// const result = await getShipping(
+			// 	"13036210",
+			// 	"13272514",
+			// );
+			// console.log("Shipping result:", result);
 		} catch (error) {
 			console.error("Error:", error);
 		}
@@ -50,7 +54,10 @@ export default function FooterCheckout({ order }: Props) {
 						Total: {formatCurrency(totalPriceSum, "BRL")}
 					</Text>
 				</View>
-				<TouchableOpacity onPress={handleShippingMutation} className="w-full bg-secondary flex rounded-lg py-2.5">
+				<TouchableOpacity
+					onPress={handleShippingMutation}
+					className="w-full bg-secondary flex rounded-lg py-2.5"
+				>
 					<Text className="text-white font-medium text-base text-center">
 						Checkout
 					</Text>

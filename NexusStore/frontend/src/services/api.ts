@@ -6,7 +6,4 @@ export const apiML = axios.create({
 
 export const apiME = axios.create({
 	baseURL: "https://www.melhorenvio.com.br/api/v2/me/",
-	headers: {
-		Authorization: `Bearer ${process.env.TOKEN_ME}`
-	}
 })
